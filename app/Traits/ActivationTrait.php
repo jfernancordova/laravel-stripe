@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Validator;
 trait ActivationTrait
 {
 
+    /*
+     * @param User $user
+     * @return void
+     */
     public function initiateEmailActivation(User $user)
     {
 
@@ -24,15 +28,17 @@ trait ActivationTrait
 
     }
 
+    /*
+     * @param User $user
+     * @return Boolean
+     */
     protected function validateEmail(User $user)
     {
 
-        // Check does email posses valid format, cause if it's social account without
-        // email, it'll have value of missingxxxxxxxxxx
         $validator = Validator::make(['email' => $user->email], ['email' => 'required|email']);
 
         if ($validator->fails()) {
-            return false; // Stopping job execution, if it return false it will break entire application
+            return false;
         }
 
         return true;

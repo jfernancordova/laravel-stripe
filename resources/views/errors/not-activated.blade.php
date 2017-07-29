@@ -38,8 +38,10 @@
     </style>
 </head>
 <body>
-<div class="container">
+<div style="color: black!important;" class="container">
     <div class="content">
+        <center>@include('partials.above-navbar-alert')</center>
+        <br>
         <div class="title">Your Account is not activated.</div>
     </div>
 </div>

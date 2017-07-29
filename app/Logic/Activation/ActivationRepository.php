@@ -9,10 +9,13 @@ use Carbon\Carbon;
 
 class ActivationRepository
 {
-
+    /*
+     * @param User $user.
+     * @return void
+     */
     public function createTokenAndSendEmail(User $user)
     {
-        // Limit number of activation attempts to 3 in 24 hours window
+
         $activations = Activation::where('user_id', $user->id)
             ->where('created_at', '>=', Carbon::now()->subHours(24))
             ->count();
@@ -21,7 +24,7 @@ class ActivationRepository
             return true;
         }
 
-        if ($user->activated) { //if user changed activated email to new one
+        if ($user->activated) {
 
             $user->update([
                 'activated' => false
@@ -29,22 +32,20 @@ class ActivationRepository
 
         }
 
-        // Create new Activation record for this user/email
         $activation = new Activation;
         $activation->user_id = $user->id;
         $activation->token = str_random(64);
         $activation->save();
 
-        // Send activation email notification
         $user->notify(new SendActivationEmail($activation->token));
-
 
     }
 
+    /*
+     * @return void
+     */
     public function deleteExpiredActivations()
     {
-
         Activation::where('created_at', '<=', Carbon::now()->subHours(72))->delete();
-
     }
 }

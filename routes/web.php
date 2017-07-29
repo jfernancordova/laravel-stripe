@@ -19,20 +19,12 @@ Route::get('/', function () {
 Route::get('/social/handle/{provider}', 'Auth\SocialController@getSocialHandle')->name('handle');
 Route::get('/social/redirect/{provider}', 'Auth\SocialController@getSocialRedirect')->name('redirect');
 
-/*Admin*/
-Route::group(['prefix' => 'admin', 'middleware' => 'auth:administrator'], function()
-{
-    Route::get('/', 'AdminController@getHome')->name('home');
-});
-
-/*Activation*/
+/*Activated*/
 Route::group(['prefix' => 'user', 'middleware' => 'auth:user'], function()
 {
-    Route::get('/', 'UserController@getHome')->name('home');
-
     Route::group(['middleware' => 'activated'], function ()
     {
-        Route::get('protected', 'UserController@getProtected')->name('activated');
+        Route::get('profile', 'UserController@getProfile')->name('profile');
     });
 
 });

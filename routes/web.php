@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+    })->name('public');
 
 /*Social*/
 Route::get('/social/handle/{provider}', 'Auth\SocialController@getSocialHandle')->name('handle');

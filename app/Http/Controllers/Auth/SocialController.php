@@ -16,9 +16,9 @@ class SocialController extends Controller
 
     use ActivationTrait;
 
-    /*
+    /**
      * @param $provider
-     * @return Laravel\Socialite\Facades\Socialite
+     * @return $this
      */
     public function getSocialRedirect($provider)
     {
@@ -35,9 +35,9 @@ class SocialController extends Controller
 
     }
 
-    /*
+    /**
      * @param $provider
-     * @return Illuminate\Http\RedirectResponse|Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function getSocialHandle($provider)
     {

@@ -10,7 +10,7 @@ class ActivateController extends Controller
 
     use ActivationTrait;
 
-    /*
+    /**
      * Get the token to activate the email.
      *
      * @param $token
@@ -41,10 +41,10 @@ class ActivateController extends Controller
 
     }
 
-    /*
+    /**
      * Resend Email Activation.
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function resend()
     {

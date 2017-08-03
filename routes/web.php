@@ -24,7 +24,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:user'], function()
 {
     Route::group(['middleware' => 'activated'], function ()
     {
-        Route::get('profile', 'UserController@getProfile')->name('profile');
+        Route::get('profile', 'UserController@getProfile')->name('profileUser');
+        Route::post('update', 'UserController@uploadUser')->name('updateUser');
     });
 
 });

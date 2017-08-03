@@ -8,10 +8,51 @@
                     <div class="panel-heading">Dashboard</div>
                     <center>@include('partials.status-panel')</center>
                     <div class="panel-body">
-                        You are logged in!
+                        Stripe Plans
+                    </div>
+                    <div class="panel-body">
+                        <div class="bs-example" data-example-id="thumbnails-with-custom-content">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <div class="caption">
+                                            <h3>Basic</h3>
+                                            <h4>20$ per Month</h4>
+                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                            <p>
+                                                <a href="#" class="btn btn-primary" role="button">Subscribe now</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <div class="caption">
+                                            <h3>Montly</h3>
+                                            <h4>40$</h4>
+                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                            <p>
+                                                <a href="#" class="btn btn-primary" role="button">Subscribe now</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <div class="thumbnail">
+                                        <div class="caption">
+                                            <h3>Yearly</h3>
+                                            <h4>60$</h4>
+                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                            <p>
+                                                <a href="#" class="btn btn-primary" role="button">Subscribe now</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
                 <h4> Update User</h4>
 
                 <center>@include('partials.messages')</center>

@@ -24,8 +24,28 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:user'], function()
 {
     Route::group(['middleware' => 'activated'], function ()
     {
+        /** User **/
+
         Route::get('profile', 'UserController@getProfile')->name('profileUser');
         Route::post('update', 'UserController@uploadUser')->name('updateUser');
+
+        /** Stripe **/
+
+        //Subscription Details
+        Route::get('subscription/details', 'StripeController@showAccount')->name('details_sub');
+        //Update Subscription
+        Route::post('update/subscription', 'AccountController@updateSubscription');
+        //Update Credit Card
+        Route::post('card', 'AccountController@updateCard');
+        //Download Invoice
+        Route::get('account/invoices/{invoice}', 'AccountController@downloadInvoice');
+        //Delete Subscription
+        Route::delete('subscription/cancel', 'AccountController@deleteSubscription');
+        //Delete Subscription by id
+        Route::get('{id}/subscription/cancel', 'AccountController@deleteSubscriptionbyId')->name('suspend_subscription');
+        //Proccessing The Subscription
+        Route::post('subscribe', 'SubscribeController@processSubscribe');
+        
     });
 
 });

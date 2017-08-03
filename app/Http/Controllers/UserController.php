@@ -14,7 +14,6 @@ class UserController extends Controller
         return view('profiles.users.profile');
     }
 
-
     /**
      * Uploading the user.
      *

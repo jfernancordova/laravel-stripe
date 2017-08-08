@@ -44,7 +44,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:user'], function()
         //Delete Subscription by id
         Route::get('{id}/subscription/cancel', 'StripeController@deleteSubscriptionbyId')->name('suspend_subscription');
         //Proccessing The Subscription
-        Route::post('subscribe', 'StripeController@processSubscribe')->name('subscribe');
+        Route::post('subscribe/{plan}', 'StripeController@processSubscribe')->name('subscribe');
         
     });
 

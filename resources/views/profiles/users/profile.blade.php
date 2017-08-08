@@ -6,43 +6,75 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Dashboard</div>
-                    <center>@include('partials.status-panel')</center>
                     <div class="panel-body">
                         Stripe Plans
                     </div>
                     <div class="panel-body">
                         <div class="bs-example" data-example-id="thumbnails-with-custom-content">
                             <div class="row">
-                                <div class="col-sm-6 col-md-4">
-                                    <div class="thumbnail">
-                                        <div class="caption">
-                                            <h3>Basic</h3>
-                                            <h4>20$ per Month</h4>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                            @include('partials.stripe')
+                                @if (Auth::user()->subscribed('main'))
+                                    <div class="panel-body">
+                                        <a style="margin-top: -20px" class="btn btn-default radius-button-dark">See Detail Subscription!</a>
+                                    </div>
+                                @else
+                                    <div class="col-sm-6 col-md-4">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h3>Basic</h3>
+                                                <h4>20$ per Month</h4>
+                                                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                                <form action="{{route('subscribe','basic')}}" method="POST">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <script
+                                                            src="https://checkout.stripe.com/checkout.js"
+                                                            class="stripe-button"
+                                                            data-key="{{env('STRIPE_FORM')}}"
+                                                            data-name="Laravel - Stripe"
+                                                            data-description="Premium">
+                                                    </script>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <div class="thumbnail">
-                                        <div class="caption">
-                                            <h3>Montly</h3>
-                                            <h4>40$</h4>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                            @include('partials.stripe')
+                                    <div class="col-sm-6 col-md-4">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h3>Montly</h3>
+                                                <h4>40$</h4>
+                                                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                                <form action="{{route('subscribe','monthly')}}" method="POST">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <script
+                                                            src="https://checkout.stripe.com/checkout.js"
+                                                            class="stripe-button"
+                                                            data-key="{{env('STRIPE_FORM')}}"
+                                                            data-name="Laravel - Stripe"
+                                                            data-description="Premium">
+                                                    </script>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-6 col-md-4">
-                                    <div class="thumbnail">
-                                        <div class="caption">
-                                            <h3>Yearly</h3>
-                                            <h4>60$</h4>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                            @include('partials.stripe')
+                                    <div class="col-sm-6 col-md-4">
+                                        <div class="thumbnail">
+                                            <div class="caption">
+                                                <h3>Yearly</h3>
+                                                <h4>60$</h4>
+                                                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                                <form action="{{route('subscribe','yearly')}}" method="POST">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <script
+                                                            src="https://checkout.stripe.com/checkout.js"
+                                                            class="stripe-button"
+                                                            data-key="{{env('STRIPE_FORM')}}"
+                                                            data-name="Laravel - Stripe"
+                                                            data-description="Premium">
+                                                    </script>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

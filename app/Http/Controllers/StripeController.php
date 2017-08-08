@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Input;
 
 class StripeController extends Controller
 {
@@ -33,16 +34,16 @@ class StripeController extends Controller
      * Process the subscription.
      *
      * @param Request $request
+     * @param $plan
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function processSubscribe(Request $request)
+    public function processSubscribe(Request $request, $plan)
     {
-
         $user       = $request->user();
         $ccToken    = $request->input('stripeToken');
-        $plan       = $request->input('plan');
+        $planId     = $plan;
 
-        $user->newSubscription('main', $plan)->create($ccToken, [
+        $user->newSubscription('main', $planId)->create($ccToken, [
             'email' => $user->email
         ]);
 

@@ -19,7 +19,7 @@ class ActivateController extends Controller
     public function activate($token)
     {
         if (auth()->user()->activated) {
-            return redirect()->route('user/profile')
+            return redirect()->route('profileUser')
                 ->with('status', 'success')
                 ->with('message', 'Your email is already activated.');
         }
@@ -35,7 +35,7 @@ class ActivateController extends Controller
 
         session()->forget('above-navbar-message');
 
-        return redirect()->route('/')
+        return redirect()->route('profileUser')
             ->with('status', 'success')
             ->with('message', 'You successfully activated your email!');
 
@@ -51,12 +51,12 @@ class ActivateController extends Controller
         if (auth()->user()->activated == false) {
             $this->initiateEmailActivation(auth()->user());
 
-            return redirect()->route('/')
+            return redirect()->route('profileUser')
                 ->with('status', 'success')
                 ->with('message', 'Activation email sent.');
         }
 
-        return redirect()->route('user/profile')
+        return redirect()->route('profileUser')
             ->with('status', 'success')
             ->with('message', 'Already activated.');
     }

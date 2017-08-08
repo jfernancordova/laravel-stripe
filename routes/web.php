@@ -34,17 +34,17 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:user'], function()
         //Subscription Details
         Route::get('subscription/details', 'StripeController@showAccount')->name('details_sub');
         //Update Subscription
-        Route::post('update/subscription', 'AccountController@updateSubscription');
+        Route::post('update/subscription', 'StripeController@updateSubscription');
         //Update Credit Card
-        Route::post('card', 'AccountController@updateCard');
+        Route::post('card', 'StripeController@updateCard');
         //Download Invoice
-        Route::get('account/invoices/{invoice}', 'AccountController@downloadInvoice');
+        Route::get('account/invoices/{invoice}', 'StripeController@downloadInvoice');
         //Delete Subscription
-        Route::delete('subscription/cancel', 'AccountController@deleteSubscription');
+        Route::delete('subscription/cancel', 'StripeController@deleteSubscription');
         //Delete Subscription by id
-        Route::get('{id}/subscription/cancel', 'AccountController@deleteSubscriptionbyId')->name('suspend_subscription');
+        Route::get('{id}/subscription/cancel', 'StripeController@deleteSubscriptionbyId')->name('suspend_subscription');
         //Proccessing The Subscription
-        Route::post('subscribe', 'SubscribeController@processSubscribe');
+        Route::post('subscribe', 'StripeController@processSubscribe')->name('subscribe');
         
     });
 

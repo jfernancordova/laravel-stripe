@@ -23,7 +23,7 @@ class UserController extends Controller
     public function uploadUser(Request $request)
     {
         $messages = [
-            'name.required'    => 'Please enter a valid last name.',
+            'name.required' => 'Please enter a valid last name.',
         ];
 
         $validate = \Validator::make($request->all(), [

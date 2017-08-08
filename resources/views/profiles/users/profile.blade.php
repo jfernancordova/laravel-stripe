@@ -19,9 +19,7 @@
                                             <h3>Basic</h3>
                                             <h4>20$ per Month</h4>
                                             <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                            <p>
-                                                <a href="#" class="btn btn-primary" role="button">Subscribe now</a>
-                                            </p>
+                                            @include('partials.stripe')
                                         </div>
                                     </div>
                                 </div>
@@ -31,9 +29,7 @@
                                             <h3>Montly</h3>
                                             <h4>40$</h4>
                                             <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                            <p>
-                                                <a href="#" class="btn btn-primary" role="button">Subscribe now</a>
-                                            </p>
+                                            @include('partials.stripe')
                                         </div>
                                     </div>
                                 </div>
@@ -43,9 +39,7 @@
                                             <h3>Yearly</h3>
                                             <h4>60$</h4>
                                             <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                            <p>
-                                                <a href="#" class="btn btn-primary" role="button">Subscribe now</a>
-                                            </p>
+                                            @include('partials.stripe')
                                         </div>
                                     </div>
                                 </div>
@@ -77,11 +71,11 @@
 
                 {{ Form::password('password_confirmation', ['class' => 'form-control']) }}
 
-                <button style="margin-top:20px" type="submit" class="btn btn-default radius-button-dark">Edit user</button>
+                <button style="margin-top:20px; margin-bottom: 20px" type="submit" class="btn btn-default radius-button-dark">Edit user</button>
 
                 {{Form::close()}}
-
             </div>
         </div>
     </div>
+    <script src="https://js.stripe.com/v3/"></script>
 @endsection

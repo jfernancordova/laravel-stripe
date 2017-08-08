@@ -37,20 +37,16 @@ class StripeController extends Controller
      */
     public function processSubscribe(Request $request)
     {
-        $user = $request->user();
 
-        if (!$user)
-            return back()->withErrors(['message' => 'user_not_found']);
+        $user       = $request->user();
+        $ccToken    = $request->input('stripeToken');
+        $plan       = $request->input('plan');
 
-        $ccToken   = $request->input('stripeToken');
-        $plan      = $request->input('plan');
-
-        $user->newSubscription('main', $plan)
-            ->create($ccToken, [
-                'email' => $user->email
+        $user->newSubscription('main', $plan)->create($ccToken, [
+            'email' => $user->email
         ]);
 
-        return redirect('/user/subscription/details')->with('message', 'user_subcribed');
+        return redirect('/user/subscription/details')->with('message', 'Now you are Premium :)');
     }
 
     /**

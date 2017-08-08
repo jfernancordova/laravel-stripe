@@ -45,7 +45,7 @@ class SocialController extends Controller
 
             return redirect()->to('login')
                 ->with('status', 'danger')
-                ->with('message', 'You did not share your profile data with our social app.');
+                ->with('message', 'You did not share your profile data with laravel-stripe.');
 
         }
 

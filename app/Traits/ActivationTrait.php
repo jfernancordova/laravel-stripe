@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Validator;
 trait ActivationTrait
 {
 
-    /*
+    /**
      * @param User $user
-     * @return void
+     * @return boolean
      */
     public function initiateEmailActivation(User $user)
     {
@@ -19,18 +19,17 @@ trait ActivationTrait
         if ( !config('settings.activation')  || !$this->validateEmail($user)) {
 
             return true;
-
         }
 
         $activationRepostory = new ActivationRepository();
-
         $activationRepostory->createTokenAndSendEmail($user);
 
     }
 
-    /*
+
+    /**
      * @param User $user
-     * @return Boolean
+     * @return bool
      */
     protected function validateEmail(User $user)
     {

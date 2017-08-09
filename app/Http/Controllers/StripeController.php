@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Validation\Rules\In;
 
 class StripeController extends Controller
 {
@@ -19,15 +20,7 @@ class StripeController extends Controller
     {
         $user 		= $request->user();
         $invoices 	= $user->subscribed('main') ? $user->invoices() : null;
-        return view('subscriptions.account', compact('user', 'invoices'));
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function showSubscribe()
-    {
-        return view('subscriptions.subscribe');
+        return view('subscriptions.details', compact('user', 'invoices'));
     }
 
     /**
@@ -58,19 +51,24 @@ class StripeController extends Controller
      */
     public function updateSubscription(Request $request)
     {
+
         $user = $request->user();
         $plan = $request->input('plan');
 
         if ($user->subscribed('main') and $user->subscription('main')->onGracePeriod())
-
+        {
             if($user->onPlan($plan))
+            {
                 $user->subscription('main')->resume();
+            }
 
             $user->subscription('main')->resume()->swap($plan);
+        }
 
         $user->subscription('main')->swap($plan);
 
-    	return redirect()->back()->with(['success' => 'Subscription updated.' ]);
+    	return redirect()->back()->with(['success' => 'Subscription updated.']);
+
     }
 
     /**
@@ -116,17 +114,5 @@ class StripeController extends Controller
         return redirect()->back()->with(['success' => 'Subscription cancelled.']);
     }
 
-    /**
-     * Delete Subscription by id.
-     *
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function deleteSubscriptionbyId($id)
-    {
-        $user = User::find($id);
-        $user->subscription('main')->cancel();
-        return redirect()->back()->with(['success' => 'Subscription cancelled.']);
-    }
 
 }

@@ -42,7 +42,13 @@
     <div class="content">
         <center>@include('partials.above-navbar-alert')</center>
         <br>
-        <div class="title">Your Account is not activated.</div>
+        @if(!Auth::user()->activated)
+            <div class="title">Your Account is not activated.</div>
+        @else
+            <div class="title">Your Account is activated.<br>
+                <a href="{{route('profileUser')}}">Visit your profile.</a>
+            </div>
+        @endif
     </div>
 </div>
 </body>

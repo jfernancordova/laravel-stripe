@@ -9,9 +9,10 @@ use Carbon\Carbon;
 
 class ActivationRepository
 {
-    /*
-     * @param User $user.
-     * @return void
+
+    /**
+     * @param User $user
+     * @return bool
      */
     public function createTokenAndSendEmail(User $user)
     {

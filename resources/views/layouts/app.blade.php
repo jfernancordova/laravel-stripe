@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="{{asset('files/img/favicon.png')}}"/>
-    <link rel="shortcut icon" type="image/png" href="{{asset('files/img/favicon.png')}}"/>
+
     
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -62,6 +62,14 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="{{route('profileUser')}}">Profile</a>
+                                    </li>
+                                    <li>
+                                        @if (Auth::user()->subscribed('main'))
+                                            <a href="{{route('detailsSub')}}">My Subscription</a>
+                                        @endif
+                                    </li>
+                                    <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -71,11 +79,6 @@
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
-                                    </li>
-                                    <li>
-                                        @if (Auth::user()->subscribed('main'))
-                                            <a>My Subscription</a>
-                                        @endif
                                     </li>
                                 </ul>
                             </li>

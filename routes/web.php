@@ -31,20 +31,24 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:user'], function()
 
         /** Stripe **/
 
-        //Subscription Details
-        Route::get('subscription/details', 'StripeController@showAccount')->name('details_sub');
-        //Update Subscription
-        Route::post('update/subscription', 'StripeController@updateSubscription');
-        //Update Credit Card
-        Route::post('card', 'StripeController@updateCard');
-        //Download Invoice
-        Route::get('account/invoices/{invoice}', 'StripeController@downloadInvoice');
-        //Delete Subscription
-        Route::delete('subscription/cancel', 'StripeController@deleteSubscription');
-        //Delete Subscription by id
-        Route::get('{id}/subscription/cancel', 'StripeController@deleteSubscriptionbyId')->name('suspend_subscription');
         //Proccessing The Subscription
         Route::post('subscribe/{plan}', 'StripeController@processSubscribe')->name('subscribe');
+
+        Route::group(['middleware' => 'subscribed'], function ()
+        {
+            //Subscription Details
+            Route::get('subscription/details', 'StripeController@showAccount')->name('detailsSub');
+            //Update Subscription
+            Route::post('update/subscription', 'StripeController@updateSubscription')->name('updateSub');
+            //Update Credit Card
+            Route::post('card', 'StripeController@updateCard')->name('updateCard');
+            //Download Invoice
+            Route::get('account/invoices/{invoice}', 'StripeController@downloadInvoice');
+            //Delete Subscription
+            Route::post('subscription/cancel', 'StripeController@deleteSubscription')->name('suspendSub');
+
+        });
+
         
     });
 

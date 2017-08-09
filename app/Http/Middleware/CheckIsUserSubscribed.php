@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckIsUserActivated
+class CheckIsUserSubscribed
 {
 
     /**
@@ -16,10 +16,9 @@ class CheckIsUserActivated
      */
     public function handle($request, Closure $next)
     {
-        if ((auth()->user()->activated == false) && config('settings.activation')) {
-
-            return redirect()->route('not-activated');
-
+        if($request->user() and !$request->user()->subscribed('main'))
+        {
+            return redirect()->route('profileUser')->with('message', 'You are not subscribed!');
         }
 
         return $next($request);

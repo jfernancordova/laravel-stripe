@@ -1,22 +1,26 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard</div>
-                    <div class="panel-body">
-                        Stripe Plans
+                    <div class="panel-heading">
+                        <center>
+                            @include('partials.messages')
+                        </center>
+                        Dashboard
                     </div>
-                    <div class="panel-body">
-                        <div class="bs-example" data-example-id="thumbnails-with-custom-content">
-                            <div class="row">
-                                @if (Auth::user()->subscribed('main'))
-                                    <div class="panel-body">
-                                        <a style="margin-top: -20px" class="btn btn-default radius-button-dark">See Detail Subscription!</a>
-                                    </div>
-                                @else
+                    @if (Auth::user()->subscribed('main'))
+                        <div class="panel-body">
+                            <a href="{{route('detailsSub')}}" style="margin-top: -5px" class="btn btn-default radius-button-dark">See Subscription Details!</a>
+                        </div>
+                    @else
+                        <div class="panel-body">
+                            Stripe Plans
+                        </div>
+                        <div class="panel-body">
+                            <div class="bs-example" data-example-id="thumbnails-with-custom-content">
+                                <div class="row">
                                     <div class="col-sm-6 col-md-4">
                                         <div class="thumbnail">
                                             <div class="caption">
@@ -28,7 +32,7 @@
                                                     <script
                                                             src="https://checkout.stripe.com/checkout.js"
                                                             class="stripe-button"
-                                                            data-key="{{env('STRIPE_FORM')}}"
+                                                            data-key="{{env('STRIPE_KEY')}}"
                                                             data-name="Laravel - Stripe"
                                                             data-description="Premium">
                                                     </script>
@@ -47,7 +51,7 @@
                                                     <script
                                                             src="https://checkout.stripe.com/checkout.js"
                                                             class="stripe-button"
-                                                            data-key="{{env('STRIPE_FORM')}}"
+                                                            data-key="{{env('STRIPE_KEY')}}"
                                                             data-name="Laravel - Stripe"
                                                             data-description="Premium">
                                                     </script>
@@ -74,14 +78,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endif
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
                 <h4> Update User</h4>
-
-                <center>@include('partials.messages')</center>
 
                 {{ Form::model(Auth::user(), array('route' => array('updateUser', Auth::user()->id))) }}
 
@@ -106,8 +108,8 @@
                 <button style="margin-top:20px; margin-bottom: 20px" type="submit" class="btn btn-default radius-button-dark">Edit user</button>
 
                 {{Form::close()}}
+
             </div>
         </div>
     </div>
-    <script src="https://js.stripe.com/v3/"></script>
 @endsection

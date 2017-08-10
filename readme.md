@@ -1,7 +1,7 @@
 
 ## Laravel-Stripe with Social and Email Authentication
 
-Simple Application to subscribe any user with Stripe and Social Authentication.
+Aplication that allows for users to subscribe with Stripe and Social Authentication.
 
 ## Documentation
    - [Laravel 5.3](https://laravel.com/docs/5.3)

@@ -1,5 +1,6 @@
 
 ## Laravel-Stripe with Social and Email Authentication
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 
 Aplication that allows for users to subscribe with Stripe and Social Authentication.
 
